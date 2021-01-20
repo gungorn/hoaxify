@@ -1,9 +1,18 @@
 package com.hoaxify.ws.user;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import lombok.Data;
 
 @Data //getter/setter - tostring - constructor - vs vs
+@Entity
 public class User { //user model
+	
+	@Id
+	@GeneratedValue
+	private long id;
 	private String username;
 	private String displayname;
 	private String password;
