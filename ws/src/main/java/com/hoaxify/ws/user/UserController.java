@@ -14,7 +14,7 @@ public class UserController {
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
 	
-	@CrossOrigin //
+	//@CrossOrigin //
 	@PostMapping("/api/v1/users") //post url path
 	public void createUser(@RequestBody User user) {
 		log.info(user.toString()); //body'yi info seviyesinde log'la
