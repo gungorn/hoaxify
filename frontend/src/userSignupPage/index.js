@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class UserSignupPage extends React.Component {
 	state = {
@@ -19,6 +20,21 @@ class UserSignupPage extends React.Component {
 	// onChangePassword = ({ target }) => { this.setState({ password: target.value }); };
 	// onChangePassword2 = ({ target }) => { this.setState({ password2: target.value }); };
 	// onChangeAgrement = ({ target }) => { this.setState({ agree: target.checked }); };
+
+
+	onClickSignup = d => {
+		d.preventDefault();
+
+		const body = {
+			username: this.state.username,
+			displayname: this.state.displayname,
+			password: this.state.password
+		};
+
+		axios.post('http://localhost:8080/api/v1/users', body)
+			.then(res => console.log(res))
+			.catch(e => console.log(e));
+	};
 
 	render() {
 		return (
@@ -73,7 +89,12 @@ class UserSignupPage extends React.Component {
 					/>
 				</div>
 
-				<button disabled={!this.state.agree}>Sign Up</button>
+				<button
+					//disabled={!this.state.agree}
+					onClick={this.onClickSignup}
+				>
+					Sign Up
+				</button>
 			</form>
 		);
 	}
