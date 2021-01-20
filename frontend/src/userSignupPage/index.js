@@ -38,64 +38,63 @@ class UserSignupPage extends React.Component {
 
 	render() {
 		return (
-			<form>
-				<h1>Signup Page</h1>
+			<div className="container">
+				<form>
+					<h1>Signup Page</h1>
 
-				<div>
-					<label>Username</label>
-					<input
-						name="username"
-						value={this.state.username}
-						onChange={this.onChange}
-					/>
-				</div>
+					<div class="mb-3">
+						<label>Username</label>
+						<input
+							class="form-control"
+							name="username"
+							value={this.state.username}
+							onChange={this.onChange}
+						/>
+					</div>
 
-				<div>
-					<label>Display Name</label>
-					<input
-						name="displayname"
-						value={this.state.displayname}
-						onChange={this.onChange}
-					/>
-				</div>
+					<div class="mb-3">
+						<label>Display Name</label>
+						<input
+							class="form-control"
+							name="displayname"
+							value={this.state.displayname}
+							onChange={this.onChange}
+						/>
+					</div>
 
-				<div>
-					<label>password</label>
-					<input
-						name="password"
-						type="password"
-						value={this.state.password}
-						onChange={this.onChange}
-					/>
-				</div>
+					<div class="mb-3">
+						<label>password</label>
+						<input
+							class="form-control"
+							name="password"
+							type="password"
+							value={this.state.password}
+							onChange={this.onChange}
+						/>
+					</div>
 
-				<div>
-					<label>Repeat password</label>
-					<input
-						name="password2"
-						type="password"
-						value={this.state.password2}
-						onChange={this.onChange}
-					/>
-				</div>
+					<div class="mb-3">
+						<label>Repeat password</label>
+						<input
+							class="form-control"
+							name="password2"
+							type="password"
+							value={this.state.password2}
+							onChange={this.onChange}
+						/>
+					</div>
 
-				<div>
-					<label>Agrement</label>
-					<input
-						name="agree"
-						type="checkbox"
-						value={this.state.agree}
-						onChange={this.onChange}
-					/>
-				</div>
 
-				<button
-					//disabled={!this.state.agree}
-					onClick={this.onClickSignup}
-				>
-					Sign Up
+					<button
+						type="button"
+						className="btn btn-primary"
+						//disabled={!this.state.agree}
+						onClick={this.onClickSignup}
+					>
+						Sign Up
 				</button>
-			</form>
+				</form>
+			</div>
 		);
 	}
 }
