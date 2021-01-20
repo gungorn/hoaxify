@@ -10,9 +10,10 @@ import lombok.Data;
 @Entity
 public class User { //user model
 	
-	@Id
+	@Id //primary key
 	@GeneratedValue
 	private long id;
+	
 	private String username;
 	private String displayname;
 	private String password;
