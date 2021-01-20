@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController //burada fena olaylar dönüyor!
 public class UserController {
 	
 	
@@ -14,7 +14,7 @@ public class UserController {
 
 	
 	@PostMapping("/api/v1/users") //post url path
-	public void createUser(@RequestBody String body) {
-		log.info(body); //body'yi info seviyesinde log'la
+	public void createUser(@RequestBody User user) {
+		log.info(user.toString()); //body'yi info seviyesinde log'la
 	}
 }
