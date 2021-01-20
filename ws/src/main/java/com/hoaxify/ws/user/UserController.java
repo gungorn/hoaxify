@@ -16,13 +16,13 @@ public class UserController {
 
 	
 	@Autowired
-	UserRepository userRepository;
+	UserService userService;
 	
 	//@CrossOrigin //
 	@PostMapping("/api/v1/users") //post url path
 	public void createUser(@RequestBody User user) {
 		log.info(user.toString()); //body'yi info seviyesinde log'la
 		
-		userRepository.save(user);
+		userService.save(user);
 	}
 }
