@@ -60,7 +60,7 @@ class UserSignupPage extends React.Component {
 				</div>
 
 				<div>
-					<label>Pasword</label>
+					<label>password</label>
 					<input
 						name="password"
 						type="password"
@@ -70,7 +70,7 @@ class UserSignupPage extends React.Component {
 				</div>
 
 				<div>
-					<label>Repeat Pasword</label>
+					<label>Repeat password</label>
 					<input
 						name="password2"
 						type="password"
