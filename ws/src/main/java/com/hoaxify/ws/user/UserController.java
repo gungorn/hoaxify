@@ -12,24 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hoaxify.ws.shared.GenericResponse;
 
-@RestController //burada fena olaylar dönüyor!
+@RestController
 public class UserController {
-
-
-	private static final Logger log = LoggerFactory.getLogger(UserController.class);
-
+	private static final Logger log = LoggerFactory.getLogger(UserController.class); //spring terminal log
 
 	@Autowired
 	UserService userService;
 
-	//@CrossOrigin //
-	@PostMapping("/api/v1/users") //post url path
+	//@CrossOrigin //farklı portlardan erişim
+	@PostMapping("/api/v1/users") //post url
 	@ResponseStatus(HttpStatus.CREATED) //request status değiştirme (default : 200 OK)
 	public GenericResponse createUser(@RequestBody User user) {
-		log.info(user.toString()); //body'yi info seviyesinde log'la
+		log.info("1> " + user.toString());
 
-		userService.save(user);
+		userService.saveUser(user); //service'e bağlan
 		
-		return new GenericResponse("dandini dandini dastana");
+		return new GenericResponse("dandini dandini dastana"); //http request response
 	}
 }
