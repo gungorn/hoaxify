@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import './index.css';
 
 class UserSignupPage extends React.Component {
 	state = {
@@ -7,7 +8,8 @@ class UserSignupPage extends React.Component {
 		displayname: '',
 		password: '',
 		password2: '',
-		agree: false
+		agree: false,
+		loading: false
 	};
 
 	componentDidMount() { }
@@ -22,8 +24,11 @@ class UserSignupPage extends React.Component {
 	// onChangeAgrement = ({ target }) => { this.setState({ agree: target.checked }); };
 
 
-	onClickSignup = d => {
+	onClickSignup = async d => {
 		d.preventDefault();
+
+		if (this.state.loading) return;
+		this.setState({ loading: true });
 
 		const body = {
 			username: this.state.username,
@@ -31,9 +36,11 @@ class UserSignupPage extends React.Component {
 			password: this.state.password
 		};
 
-		axios.post('/api/v1/users', body)
-			.then(res => console.log(res))
+		await axios.post('/api/v1/users', body)
+			.then(res => { console.log(res); })
 			.catch(e => console.log(e));
+
+		this.setState({ loading: false });
 	};
 
 	render() {
@@ -43,7 +50,7 @@ class UserSignupPage extends React.Component {
 					<h1>Signup Page</h1>
 
 					<div class="mb-3">
-						<label>Username</label>
+						<label className="inputLabel">Username</label>
 						<input
 							class="form-control"
 							name="username"
@@ -53,7 +60,7 @@ class UserSignupPage extends React.Component {
 					</div>
 
 					<div class="mb-3">
-						<label>Display Name</label>
+						<label className="inputLabel">Display Name</label>
 						<input
 							class="form-control"
 							name="displayname"
@@ -63,7 +70,7 @@ class UserSignupPage extends React.Component {
 					</div>
 
 					<div class="mb-3">
-						<label>password</label>
+						<label className="inputLabel">password</label>
 						<input
 							class="form-control"
 							name="password"
@@ -74,7 +81,7 @@ class UserSignupPage extends React.Component {
 					</div>
 
 					<div class="mb-3">
-						<label>Repeat password</label>
+						<label className="inputLabel">Repeat password</label>
 						<input
 							class="form-control"
 							name="password2"
@@ -88,11 +95,21 @@ class UserSignupPage extends React.Component {
 					<button
 						type="button"
 						className="btn btn-primary"
-						//disabled={!this.state.agree}
+						data-bs-toggle="tooltip"
+						data-bs-placement="top"
+						title="Sign Up"
+						disabled={this.state.loading}
 						onClick={this.onClickSignup}
+						style={{ width: '20%', height: "50px" }}
 					>
-						Sign Up
-				</button>
+						{
+							this.state.loading ?
+								<div class="spinner-border text-light" role="status">
+									<span class="visually-hidden">Loading...</span>
+								</div> :
+								"Sign Up"
+						}
+					</button>
 				</form>
 			</div>
 		);
