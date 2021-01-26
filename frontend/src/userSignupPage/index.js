@@ -1,7 +1,9 @@
 import React from 'react';
-import axios from 'axios';
+
 import './index.css';
 import * as API from '../API';
+
+import { Input1 } from '../components';
 
 class UserSignupPage extends React.Component {
 	state = {
@@ -43,7 +45,7 @@ class UserSignupPage extends React.Component {
 
 		}
 		else { //error
-			console.log('RES', res.data.response.data);
+			console.log("🚀 ~ file: index.js ~ line 49 ~ UserSignupPage ~ res.data.response.data", res.data.response.data);
 			this.setState({ validationErrors: res.data.response.data.type === 'validerr' ? res.data.response.data.errors : {} });
 		}
 
@@ -58,50 +60,33 @@ class UserSignupPage extends React.Component {
 				<form>
 					<h1>Signup Page</h1>
 
-					<div className="mb-3">
-						<label className="inputLabel">Username</label>
-						<input
-							className={validationErrors.username ? "form-control is-invalid" : "form-control"}
-							name="username"
-							value={this.state.username}
-							onChange={this.onChange}
-						/>
-						<div className="invalid-feedback">{validationErrors.username}</div>
-					</div>
-
-					<div className="mb-3">
-						<label className="inputLabel">Display Name</label>
-						<input
-							className={validationErrors.displayname ? "form-control is-invalid" : "form-control"}
-							name="displayname"
-							value={this.state.displayname}
-							onChange={this.onChange}
-						/>
-						<div className="invalid-feedback">{validationErrors.displayname}</div>
-					</div>
-
-					<div className="mb-3">
-						<label className="inputLabel">password</label>
-						<input
-							className={validationErrors.password ? "form-control is-invalid" : "form-control"}
-							name="password"
-							type="password"
-							value={this.state.password}
-							onChange={this.onChange}
-						/>
-						<div className="invalid-feedback">{validationErrors.password}</div>
-					</div>
-
-					<div className="mb-3">
-						<label className="inputLabel">Repeat password</label>
-						<input
-							className="form-control"
-							name="password2"
-							type="password"
-							value={this.state.password2}
-							onChange={this.onChange}
-						/>
-					</div>
+					<Input1
+						placeholder="Username"
+						name="username"
+						value={this.state.username}
+						onChange={this.onChange}
+						error={validationErrors.username}
+					/>
+					<Input1
+						placeholder="Display Name"
+						name="displayname"
+						value={this.state.displayname}
+						onChange={this.onChange}
+						error={validationErrors.displayname}
+					/>
+					<Input1
+						placeholder="Password"
+						name="password"
+						value={this.state.password}
+						onChange={this.onChange}
+						error={validationErrors.password}
+					/>
+					<Input1
+						placeholder="Repeat Password"
+						name="password2"
+						value={this.state.password2}
+						onChange={this.onChange}
+					/>
 
 
 					<button
@@ -126,6 +111,6 @@ class UserSignupPage extends React.Component {
 			</div>
 		);
 	}
-}
+};
 
 export { UserSignupPage };
