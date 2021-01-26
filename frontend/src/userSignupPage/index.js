@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './index.css';
+import * as API from '../API';
 
 class UserSignupPage extends React.Component {
 	state = {
@@ -30,15 +31,7 @@ class UserSignupPage extends React.Component {
 		if (this.state.loading) return;
 		this.setState({ loading: true });
 
-		const body = {
-			username: this.state.username,
-			displayname: this.state.displayname,
-			password: this.state.password
-		};
-
-		await axios.post('/api/v1/users', body)
-			.then(res => { console.log(res); })
-			.catch(e => console.log(e));
+		await API.userSignUp(this.state);
 
 		this.setState({ loading: false });
 	};
