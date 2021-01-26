@@ -42,30 +42,30 @@ class UserSignupPage extends React.Component {
 				<form>
 					<h1>Signup Page</h1>
 
-					<div class="mb-3">
+					<div className="mb-3">
 						<label className="inputLabel">Username</label>
 						<input
-							class="form-control"
+							className="form-control"
 							name="username"
 							value={this.state.username}
 							onChange={this.onChange}
 						/>
 					</div>
 
-					<div class="mb-3">
+					<div className="mb-3">
 						<label className="inputLabel">Display Name</label>
 						<input
-							class="form-control"
+							className="form-control"
 							name="displayname"
 							value={this.state.displayname}
 							onChange={this.onChange}
 						/>
 					</div>
 
-					<div class="mb-3">
+					<div className="mb-3">
 						<label className="inputLabel">password</label>
 						<input
-							class="form-control"
+							className="form-control"
 							name="password"
 							type="password"
 							value={this.state.password}
@@ -73,10 +73,10 @@ class UserSignupPage extends React.Component {
 						/>
 					</div>
 
-					<div class="mb-3">
+					<div className="mb-3">
 						<label className="inputLabel">Repeat password</label>
 						<input
-							class="form-control"
+							className="form-control"
 							name="password2"
 							type="password"
 							value={this.state.password2}
@@ -97,8 +97,8 @@ class UserSignupPage extends React.Component {
 					>
 						{
 							this.state.loading ?
-								<div class="spinner-border text-light" role="status">
-									<span class="visually-hidden">Loading...</span>
+								<div className="spinner-border text-light" role="status">
+									<span className="visually-hidden">Loading...</span>
 								</div> :
 								"Sign Up"
 						}
