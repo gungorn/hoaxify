@@ -1,18 +1,18 @@
 package com.hoaxify.ws.user;
 
-import java.util.Date;
-import java.util.Map;
-import java.util.HashMap;
+//import java.util.Date;
+//import java.util.Map;
+//import java.util.HashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+//import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+//import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hoaxify.ws.error.ApiError;
@@ -32,24 +32,26 @@ public class UserController {
 		log.info("1> " + user.toString());
 
 		String username = user.getUsername();
+		String displayname = user.getDisplayname();
 		String password = user.getPassword();
 
-		//if(username == null || username.isEmpty()) return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-
-
-		//username validation error
-		if(username == null || username.isEmpty()) {
-			ApiError error = new ApiError(400, "Validation Error", "api/v1/users"); //bu request'teki hatalar
-
-			Map<String, String> validationErrors = new HashMap<>();
-			validationErrors.put("username", "Username cannot be null");
-			error.setValidationErrors(validationErrors);
-
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+		
+		//// VALIDATION ERRORS
+		ApiError validationErrors = new ApiError(400, "Validation Error", "validerr", "api/v1/users");
+		
+		if(username == null || username.isEmpty()) validationErrors.putError("username", "Username cannot be null");
+		if(displayname == null || displayname.isEmpty()) validationErrors.putError("displayname", "Displayname cannot be null");
+		if(password == null || password.isEmpty()) validationErrors.putError("password", "Password cannot be null");
+		
+		if (!validationErrors.getErrors().isEmpty()) {
+			return ResponseEntity
+					.status(HttpStatus.BAD_REQUEST)
+					.body(validationErrors);
 		}
-
-
-		userService.saveUser(user); //service'e bağlan
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		
+		userService.saveUser(user); //service'e bağlan (set - create)
 
 		return ResponseEntity.ok(new GenericResponse("her şey yolunda"));
 	}

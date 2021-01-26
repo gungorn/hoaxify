@@ -1,9 +1,17 @@
 import axios from 'axios';
 
-export const userSignUp = async ({ username, displayname, password }) => {
+export const userSignUp = ({ username, displayname, password }) => new Promise(async resolve => {
 	const body = { username, displayname, password };
 
 	await axios.post('/api/v1/users', body)
-		.then(res => { console.log(res); })
-		.catch(e => console.log(e));
-};
+		.then(res => {
+			console.log(res.data);
+			resolve({ status: true, data: res.data });
+		})
+		.catch(e => {
+			console.log(e);
+			resolve({ status: false, data: e });
+		});
+});
+
+
