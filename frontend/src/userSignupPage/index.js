@@ -77,6 +77,7 @@ class UserSignupPage extends React.Component {
 					<Input1
 						placeholder="Password"
 						name="password"
+						type="password"
 						value={this.state.password}
 						onChange={this.onChange}
 						error={validationErrors.password}
@@ -84,6 +85,7 @@ class UserSignupPage extends React.Component {
 					<Input1
 						placeholder="Repeat Password"
 						name="password2"
+						type="password"
 						value={this.state.password2}
 						onChange={this.onChange}
 					/>

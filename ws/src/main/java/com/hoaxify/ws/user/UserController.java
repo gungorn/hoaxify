@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -30,8 +31,6 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	//@CrossOrigin //farklı portlardan erişim
-	//@ResponseStatus(HttpStatus.CREATED) //request status değiştirme (default : 200 OK)
 	@PostMapping("/api/v1/users") //post url
 	public ResponseEntity<?> createUser(@Valid @RequestBody User user) {
 		log.info("1> " + user.toString());
@@ -56,5 +55,20 @@ public class UserController {
 					);
 		
 		return validationErrors;
+	}
+	
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ApiError handleDataIntegrityViolationException(DataIntegrityViolationException exception) {
+		log.info("DATA INTEGRITY VIOLATION ERROR");
+		
+		ApiError errors = new ApiError(400, "Data Integriry Violation Error", "dataintviol", "api/v1/users");
+
+		errors.putError(
+				"username", 
+				exception.getMessage()
+				);
+		
+		return errors;
 	}
 }
