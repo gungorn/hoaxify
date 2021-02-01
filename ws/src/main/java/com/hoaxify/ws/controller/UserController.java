@@ -1,4 +1,4 @@
-package com.hoaxify.ws.user;
+package com.hoaxify.ws.controller;
 
 import javax.validation.Valid;
 
@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hoaxify.ws.error.ApiError;
+import com.hoaxify.ws.model.User;
+import com.hoaxify.ws.service.UserService;
 import com.hoaxify.ws.shared.GenericResponse;
 
 @RestController
