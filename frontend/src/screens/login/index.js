@@ -4,7 +4,7 @@ import { withTranslation } from 'react-i18next';
 import './index.css';
 import * as API from '../../API';
 
-import { Input1 } from '../../components';
+import { Input1, LanguageSelector } from '../../components';
 
 class LoginPage extends React.Component {
 	state = {
@@ -28,20 +28,13 @@ class LoginPage extends React.Component {
 		this.setState({ loading: false });
 	};
 
-
-	changeLanguage = lng => {
-		this.props.i18n.changeLanguage(lng);
-		API.changeLanguage(lng);
-	};
-
-
 	render() {
 		const { t } = this.props;
 
 		return (
 			<div className="container">
 				<form>
-					<h1>{t('Sign Up')}</h1>
+					<h1>{t('Login')}</h1>
 
 					<Input1
 						placeholder={t('Username')}
@@ -77,11 +70,7 @@ class LoginPage extends React.Component {
 					</button>
 				</form>
 
-
-				<div className="lngContainer">
-					<label className="trText" onClick={() => this.changeLanguage('tr')}>TR</label>
-					<label className="enText" onClick={() => this.changeLanguage('en')}>EN</label>
-				</div>
+				<LanguageSelector />
 			</div>
 		);
 	}

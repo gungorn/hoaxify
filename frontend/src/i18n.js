@@ -10,7 +10,8 @@ i18n.use(initReactI18next).init({
 				'Username': 'Username',
 				'Display Name': 'Display Name',
 				'Password': 'Password',
-				'Repeat Password': 'Repeat Password'
+				'Repeat Password': 'Repeat Password',
+				'Login': 'Login'
 			}
 		},
 		tr: {
@@ -20,7 +21,8 @@ i18n.use(initReactI18next).init({
 				'Username': 'Kullanıcı adı',
 				'Display Name': 'Ad soyad',
 				'Password': 'Şifre',
-				'Repeat Password': 'Şifre tekrarla'
+				'Repeat Password': 'Şifre tekrarla',
+				'Login': 'Giriş Yap'
 			}
 		},
 	},

@@ -4,7 +4,7 @@ import { withTranslation } from 'react-i18next';
 import './index.css';
 import * as API from '../../API';
 
-import { Input1 } from '../../components';
+import { Input1, LanguageSelector } from '../../components';
 
 class SignupPage extends React.Component {
 	state = {
@@ -18,10 +18,6 @@ class SignupPage extends React.Component {
 		passwordError: ''
 	};
 
-	componentDidMount() { }
-	componentDidUpdate(prevProps, prevState) { }
-	componentWillUnmount() { }
-
 	onChange = ({ target }) => {
 		const { t } = this.props;
 		const { name, value } = target;
@@ -34,12 +30,6 @@ class SignupPage extends React.Component {
 
 		this.setState({ [name]: value, validationErrors, passwordError });
 	};
-	// onChangeUsername = ({ target }) => { this.setState({ username: target.value }); };
-	// onChangeDisplayname = ({ target }) => { this.setState({ displayname: target.value }); };
-	// onChangePassword = ({ target }) => { this.setState({ password: target.value }); };
-	// onChangePassword2 = ({ target }) => { this.setState({ password2: target.value }); };
-	// onChangeAgrement = ({ target }) => { this.setState({ agree: target.checked }); };
-
 
 	onClickSignup = async d => {
 		d.preventDefault();
@@ -58,13 +48,6 @@ class SignupPage extends React.Component {
 
 		this.setState({ loading: false });
 	};
-
-
-	changeLanguage = lng => {
-		this.props.i18n.changeLanguage(lng);
-		API.changeLanguage(lng);
-	};
-
 
 	render() {
 		const { validationErrors } = this.state;
@@ -127,11 +110,7 @@ class SignupPage extends React.Component {
 					</button>
 				</form>
 
-
-				<div className="lngContainer">
-					<label className="trText" onClick={() => this.changeLanguage('tr')}>TR</label>
-					<label className="enText" onClick={() => this.changeLanguage('en')}>EN</label>
-				</div>
+				<LanguageSelector />
 			</div>
 		);
 	}
