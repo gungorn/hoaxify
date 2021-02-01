@@ -1,11 +1,11 @@
 package com.hoaxify.ws.user;
 
-import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
-import static java.lang.annotation.ElementType.CONSTRUCTOR;
+//import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
+//import static java.lang.annotation.ElementType.CONSTRUCTOR;
 import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.PARAMETER;
-import static java.lang.annotation.ElementType.TYPE_USE;
+//import static java.lang.annotation.ElementType.METHOD;
+//import static java.lang.annotation.ElementType.PARAMETER;
+//import static java.lang.annotation.ElementType.TYPE_USE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Retention;
@@ -19,7 +19,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = { UniqueUsernameValidator.class })
 public @interface UniqueUsername {
 
-	String message() default "{javax.validation.constraints.NotNull.message}";
+	String message() default "username must be unique";
 
 	Class<?>[] groups() default { };
 

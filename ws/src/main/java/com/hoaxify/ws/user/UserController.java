@@ -26,49 +26,42 @@ import com.hoaxify.ws.shared.GenericResponse;
 
 @RestController
 public class UserController {
-	private static final Logger log = LoggerFactory.getLogger(UserController.class); //spring terminal log
+	private static final Logger log = LoggerFactory.getLogger(UserController.class); // spring terminal log
 
 	@Autowired
 	UserService userService;
 
-	@PostMapping("/api/v1/users") //post url
+	@PostMapping("/api/v1/users") // post url
 	public ResponseEntity<?> createUser(@Valid @RequestBody User user) {
 		log.info("1> " + user.toString());
-		
-		userService.saveUser(user); //service'e bağlan (set - create)
+
+		userService.saveUser(user); // service'e bağlan (set - create)
 
 		return ResponseEntity.ok(new GenericResponse("her şey yolunda"));
 	}
-	
-	
+
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ApiError handleValidationException(MethodArgumentNotValidException exception) {
 		log.info("VALIDATION ERROR");
-		
+
 		ApiError validationErrors = new ApiError(400, "Validation Error", "validerr", "api/v1/users");
-		
-		for(FieldError error : exception.getBindingResult().getFieldErrors())
-			validationErrors.putError(
-					error.getField(), 
-					error.getDefaultMessage()
-					);
-		
+
+		for (FieldError error : exception.getBindingResult().getFieldErrors())
+			validationErrors.putError(error.getField(), error.getDefaultMessage());
+
 		return validationErrors;
 	}
-	
+
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ApiError handleDataIntegrityViolationException(DataIntegrityViolationException exception) {
 		log.info("DATA INTEGRITY VIOLATION ERROR");
-		
+
 		ApiError errors = new ApiError(400, "Data Integriry Violation Error", "dataintviol", "api/v1/users");
 
-		errors.putError(
-				"username", 
-				exception.getMessage()
-				);
-		
+		errors.putError("username", exception.getMessage());
+
 		return errors;
 	}
 }
