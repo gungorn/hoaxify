@@ -13,7 +13,8 @@ class UserSignupPage extends React.Component {
 		password2: '',
 		agree: false,
 		loading: false,
-		validationErrors: {}
+		validationErrors: {},
+		passwordError: ''
 	};
 
 	componentDidMount() { }
@@ -23,9 +24,13 @@ class UserSignupPage extends React.Component {
 	onChange = ({ target }) => {
 		const { name, value } = target;
 		const validationErrors = { ...this.state.validationErrors };
+		let passwordError = '';
+
 		delete validationErrors[name];
 
-		this.setState({ [name]: value, validationErrors });
+		if (name === 'password2' && value !== this.state.password) passwordError = 'Password mismatch';
+
+		this.setState({ [name]: value, validationErrors, passwordError });
 	};
 	// onChangeUsername = ({ target }) => { this.setState({ username: target.value }); };
 	// onChangeDisplayname = ({ target }) => { this.setState({ displayname: target.value }); };
@@ -88,6 +93,7 @@ class UserSignupPage extends React.Component {
 						type="password"
 						value={this.state.password2}
 						onChange={this.onChange}
+						error={this.state.passwordError}
 					/>
 
 
