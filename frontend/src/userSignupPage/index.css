@@ -1,3 +1,30 @@
 .inputLabel {
 	font-weight: bold;
 }
+
+.lngContainer {
+	position: absolute;
+	top: 2%;
+	right: 2%;
+}
+
+.trText {
+	font-weight: bold;
+	color:royalblue;
+	margin-right: 20px;
+	cursor: pointer;
+}
+
+
+.enText {
+	font-weight: bold;
+	color:royalblue;
+	cursor: pointer;
+}
+
+
+.lngLine {
+	width: 2px;
+	height: 10px;
+	background-color:royalblue
+}

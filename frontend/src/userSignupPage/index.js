@@ -1,4 +1,5 @@
 import React from 'react';
+import { withTranslation } from 'react-i18next';
 
 import './index.css';
 import * as API from '../API';
@@ -22,13 +23,14 @@ class UserSignupPage extends React.Component {
 	componentWillUnmount() { }
 
 	onChange = ({ target }) => {
+		const { t } = this.props;
 		const { name, value } = target;
 		const validationErrors = { ...this.state.validationErrors };
 		let passwordError = '';
 
 		delete validationErrors[name];
 
-		if (name === 'password2' && value !== this.state.password) passwordError = 'Password mismatch';
+		if (name === 'password2' && value !== this.state.password) passwordError = t('Password mismatch');
 
 		this.setState({ [name]: value, validationErrors, passwordError });
 	};
@@ -57,30 +59,38 @@ class UserSignupPage extends React.Component {
 		this.setState({ loading: false });
 	};
 
+
+	changeLanguage = lng => {
+		this.props.i18n.changeLanguage(lng);
+		API.changeLanguage(lng);
+	};
+
+
 	render() {
 		const { validationErrors } = this.state;
+		const { t } = this.props;
 
 		return (
 			<div className="container">
 				<form>
-					<h1>Signup Page</h1>
+					<h1>{t('Sign Up')}</h1>
 
 					<Input1
-						placeholder="Username"
+						placeholder={t('Username')}
 						name="username"
 						value={this.state.username}
 						onChange={this.onChange}
 						error={validationErrors.username}
 					/>
 					<Input1
-						placeholder="Display Name"
+						placeholder={t('Display Name')}
 						name="displayname"
 						value={this.state.displayname}
 						onChange={this.onChange}
 						error={validationErrors.displayname}
 					/>
 					<Input1
-						placeholder="Password"
+						placeholder={t('Password')}
 						name="password"
 						type="password"
 						value={this.state.password}
@@ -88,7 +98,7 @@ class UserSignupPage extends React.Component {
 						error={validationErrors.password}
 					/>
 					<Input1
-						placeholder="Repeat Password"
+						placeholder={t('Repeat Password')}
 						name="password2"
 						type="password"
 						value={this.state.password2}
@@ -112,13 +122,20 @@ class UserSignupPage extends React.Component {
 								<div className="spinner-border text-light" role="status">
 									<span className="visually-hidden">Loading...</span>
 								</div> :
-								"Sign Up"
+								t('Sign Up')
 						}
 					</button>
 				</form>
+
+
+				<div className="lngContainer">
+					<label className="trText" onClick={() => this.changeLanguage('tr')}>TR</label>
+					<label className="enText" onClick={() => this.changeLanguage('en')}>EN</label>
+				</div>
 			</div>
 		);
 	}
 };
 
-export { UserSignupPage };
+const x = withTranslation()(UserSignupPage);
+export { x as UserSignupPage };

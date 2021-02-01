@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+export const changeLanguage = lng => { axios.defaults.headers['accept-language'] = lng; };
+
 export const userSignUp = ({ username, displayname, password }) => new Promise(async resolve => {
 	const body = { username, displayname, password };
 
@@ -13,5 +15,6 @@ export const userSignUp = ({ username, displayname, password }) => new Promise(a
 			resolve({ status: false, data: e });
 		});
 });
+
 
 
