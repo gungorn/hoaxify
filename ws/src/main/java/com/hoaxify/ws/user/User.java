@@ -22,6 +22,7 @@ public class User { //user model
 	@NotNull
 	@Length(min = 6, max = 32)
 	@Column(unique = true)
+	@UniqueUsername //ben yazdım
 	private String username;
 
 	@NotNull
