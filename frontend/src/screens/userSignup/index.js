@@ -2,11 +2,11 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 
 import './index.css';
-import * as API from '../API';
+import * as API from '../../API';
 
-import { Input1 } from '../components';
+import { Input1 } from '../../components';
 
-class UserSignupPage extends React.Component {
+class SignupPage extends React.Component {
 	state = {
 		username: '',
 		displayname: '',
@@ -52,7 +52,7 @@ class UserSignupPage extends React.Component {
 
 		}
 		else { //error
-			console.log("🚀 ~ file: index.js ~ line 49 ~ UserSignupPage ~ res.data.response.data", res.data.response.data);
+			console.log("🚀 ~ file: index.js ~ line 49 ~ SignupPage ~ res.data.response.data", res.data.response.data);
 			this.setState({ validationErrors: res.data.response.data.type === 'validerr' ? res.data.response.data.errors : {} });
 		}
 
@@ -137,5 +137,5 @@ class UserSignupPage extends React.Component {
 	}
 };
 
-const x = withTranslation()(UserSignupPage);
-export { x as UserSignupPage };
+const x = withTranslation()(SignupPage);
+export { x as SignupPage };

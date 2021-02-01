@@ -1,7 +1,3 @@
-.inputLabel {
-	font-weight: bold;
-}
-
 .lngContainer {
 	position: absolute;
 	top: 2%;
@@ -15,13 +11,11 @@
 	cursor: pointer;
 }
 
-
 .enText {
 	font-weight: bold;
 	color:royalblue;
 	cursor: pointer;
 }
-
 
 .lngLine {
 	width: 2px;

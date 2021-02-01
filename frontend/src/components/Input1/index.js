@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './index.css';
 
 const Input1 = ({ placeholder, name, type, value, onChange, error }) => {
 	console.log(name, error);

@@ -1,9 +1,9 @@
 import './index.css';
-import { UserSignupPage } from '../userSignupPage';
+import { SignupPage, LoginPage } from '../screens';
 function App() {
 	return (
 		<div className="App">
-			<UserSignupPage />
+			<LoginPage />
 		</div>
 	);
 }
